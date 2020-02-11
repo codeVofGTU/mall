@@ -1,0 +1,19 @@
+# DataSource Config
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://rm-8vbw1k484noyecox5ao.mysql.zhangbei.rds.aliyuncs.com:3306/mall?useUnicode=true&serverTimezone=GMT&useSSL=false&characterEncoding=utf8
+    username: mall
+    password: mall1234@@
+
+# Logger Config
+logging:
+  level:
+    com.baomidou.mybatisplus.samples.quickstart: info
+    
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true  
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+

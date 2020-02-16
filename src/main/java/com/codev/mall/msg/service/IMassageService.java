@@ -1,8 +1,9 @@
-package com.codev.mall.massage.service;
+package com.codev.mall.msg.service;
 
-import com.codev.mall.massage.entity.Massage;
+import com.codev.mall.msg.entity.Massage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.codev.mall.base.PageQueryBody;
+import com.codev.mall.base.ResponseBodyBean;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
  * </p>
  *
  * @author godV
- * @since 2020-02-15
+ * @since 2020-02-16
  */
 public interface IMassageService extends IService<Massage> {
  
@@ -22,5 +23,5 @@ public interface IMassageService extends IService<Massage> {
      * @param Massage
      * @return
      */
-	List<Massage> selectPage(PageQueryBody<Massage> vo);
+	ResponseBodyBean<List<Massage>> selectPage(PageQueryBody<Massage> vo);
 }

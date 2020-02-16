@@ -25,6 +25,7 @@ import com.codev.mall.cart.service.ICartService;
 import com.codev.mall.cart.entity.Cart;
 import com.codev.mall.cart.vo.CartVO;
 import com.codev.mall.base.PageQueryBody;
+import com.codev.mall.base.ResponseBodyBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.List;
@@ -35,7 +36,7 @@ import java.util.Map;
 /**
 *  前端控制器
 * @author godV
-* @since 2020-02-15
+* @since 2020-02-16
 */
 @RestController
 public class CartController {
@@ -60,15 +61,16 @@ public class CartController {
 	}
 	
 	/**
-     * 按查询条件查询.
+     * 按查询条件查询分页.
      * 
      * @param vo QueryVO
      * @return Page<Cart>
      */
- 	@PostMapping("/Carts")
-    List<Cart> findAll(@RequestBody PageQueryBody<Cart> vo){
+ 	@PostMapping("/Carts/page")
+    ResponseBodyBean<List<Cart>> findByPage(@RequestBody PageQueryBody<Cart> vo){
     	return getService().selectPage(vo);
     };
+    
 	/**
      * 修改.
      * 
@@ -104,4 +106,14 @@ public class CartController {
    		return getService().removeById(id);
     }
  
+	/**
+     * 按查询条件查询分页.
+     * 
+     * @param vo QueryVO
+     * @return Page<Cart>
+     */
+ 	@PostMapping("/Carts")
+    List<Cart> findByPage(){
+    	return getService().list();
+    };
 }

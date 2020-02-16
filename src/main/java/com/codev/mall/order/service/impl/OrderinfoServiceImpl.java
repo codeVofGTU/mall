@@ -7,6 +7,7 @@ import com.codev.mall.order.mapper.OrderinfoMapper;
 import com.codev.mall.order.service.IOrderinfoService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.codev.mall.base.PageQueryBody;
+import com.codev.mall.base.ResponseBodyBean;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ import java.util.List;
  * </p>
  *
  * @author godV
- * @since 2020-02-15
+ * @since 2020-02-16
  */
 @Service
 @Transactional
@@ -35,11 +36,11 @@ public class OrderinfoServiceImpl extends ServiceImpl<OrderinfoMapper, Orderinfo
     }
  
 	@Override
-	public List<Orderinfo> selectPage(PageQueryBody<Orderinfo> vo) {
+	public ResponseBodyBean<List<Orderinfo>> selectPage(PageQueryBody<Orderinfo> vo) {
 		Page<Orderinfo> page = new Page<Orderinfo>(vo.getPage(), vo.getSize());
 		Page<Orderinfo> OrderinfoIPage = getMapper().selectPage(page, Wrappers.<Orderinfo>lambdaQuery());
 		List<Orderinfo> records = OrderinfoIPage.getRecords();
-		return records;
+		return new ResponseBodyBean<List<Orderinfo>>(records, OrderinfoIPage.getTotal());
 	}
  
  

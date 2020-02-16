@@ -7,6 +7,7 @@ import com.codev.mall.catering.mapper.ClassificationMapper;
 import com.codev.mall.catering.service.IClassificationService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.codev.mall.base.PageQueryBody;
+import com.codev.mall.base.ResponseBodyBean;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ import java.util.List;
  * </p>
  *
  * @author godV
- * @since 2020-02-15
+ * @since 2020-02-16
  */
 @Service
 @Transactional
@@ -35,11 +36,11 @@ public class ClassificationServiceImpl extends ServiceImpl<ClassificationMapper,
     }
  
 	@Override
-	public List<Classification> selectPage(PageQueryBody<Classification> vo) {
+	public ResponseBodyBean<List<Classification>> selectPage(PageQueryBody<Classification> vo) {
 		Page<Classification> page = new Page<Classification>(vo.getPage(), vo.getSize());
 		Page<Classification> ClassificationIPage = getMapper().selectPage(page, Wrappers.<Classification>lambdaQuery());
 		List<Classification> records = ClassificationIPage.getRecords();
-		return records;
+		return new ResponseBodyBean<List<Classification>>(records, ClassificationIPage.getTotal());
 	}
  
  

@@ -33,6 +33,7 @@ import ${package.Service}.${table.serviceName};
 import ${package.Entity}.${entity};
 import ${cfg.packageName}.vo.${entity}VO;
 import com.codev.mall.base.PageQueryBody;
+import com.codev.mall.base.ResponseBodyBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.List;
@@ -72,15 +73,16 @@ public class ${table.controllerName} {
 	}
 	
 	/**
-     * 按查询条件查询.
+     * 按查询条件查询分页.
      * 
      * @param vo QueryVO
      * @return Page<${table.entityName}>
      */
- 	@PostMapping("/${table.entityName}s")
-    List<${table.entityName}> findAll(@RequestBody PageQueryBody<${table.entityName}> vo){
+ 	@PostMapping("/${table.entityName}s/page")
+    ResponseBodyBean<List<${table.entityName}>> findByPage(@RequestBody PageQueryBody<${table.entityName}> vo){
     	return getService().selectPage(vo);
     };
+    
 	/**
      * 修改.
      * 
@@ -116,4 +118,14 @@ public class ${table.controllerName} {
    		return getService().removeById(id);
     }
  
+	/**
+     * 按查询条件查询分页.
+     * 
+     * @param vo QueryVO
+     * @return Page<${table.entityName}>
+     */
+ 	@PostMapping("/${table.entityName}s")
+    List<${table.entityName}> findByPage(){
+    	return getService().list();
+    };
 }

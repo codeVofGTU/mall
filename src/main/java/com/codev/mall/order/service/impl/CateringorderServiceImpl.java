@@ -7,6 +7,7 @@ import com.codev.mall.order.mapper.CateringorderMapper;
 import com.codev.mall.order.service.ICateringorderService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.codev.mall.base.PageQueryBody;
+import com.codev.mall.base.ResponseBodyBean;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ import java.util.List;
  * </p>
  *
  * @author godV
- * @since 2020-02-15
+ * @since 2020-02-16
  */
 @Service
 @Transactional
@@ -35,11 +36,11 @@ public class CateringorderServiceImpl extends ServiceImpl<CateringorderMapper, C
     }
  
 	@Override
-	public List<Cateringorder> selectPage(PageQueryBody<Cateringorder> vo) {
+	public ResponseBodyBean<List<Cateringorder>> selectPage(PageQueryBody<Cateringorder> vo) {
 		Page<Cateringorder> page = new Page<Cateringorder>(vo.getPage(), vo.getSize());
 		Page<Cateringorder> CateringorderIPage = getMapper().selectPage(page, Wrappers.<Cateringorder>lambdaQuery());
 		List<Cateringorder> records = CateringorderIPage.getRecords();
-		return records;
+		return new ResponseBodyBean<List<Cateringorder>>(records, CateringorderIPage.getTotal());
 	}
  
  

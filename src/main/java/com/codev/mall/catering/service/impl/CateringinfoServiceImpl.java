@@ -7,6 +7,7 @@ import com.codev.mall.catering.mapper.CateringinfoMapper;
 import com.codev.mall.catering.service.ICateringinfoService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.codev.mall.base.PageQueryBody;
+import com.codev.mall.base.ResponseBodyBean;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ import java.util.List;
  * </p>
  *
  * @author godV
- * @since 2020-02-15
+ * @since 2020-02-16
  */
 @Service
 @Transactional
@@ -35,11 +36,11 @@ public class CateringinfoServiceImpl extends ServiceImpl<CateringinfoMapper, Cat
     }
  
 	@Override
-	public List<Cateringinfo> selectPage(PageQueryBody<Cateringinfo> vo) {
+	public ResponseBodyBean<List<Cateringinfo>> selectPage(PageQueryBody<Cateringinfo> vo) {
 		Page<Cateringinfo> page = new Page<Cateringinfo>(vo.getPage(), vo.getSize());
 		Page<Cateringinfo> CateringinfoIPage = getMapper().selectPage(page, Wrappers.<Cateringinfo>lambdaQuery());
 		List<Cateringinfo> records = CateringinfoIPage.getRecords();
-		return records;
+		return new ResponseBodyBean<List<Cateringinfo>>(records, CateringinfoIPage.getTotal());
 	}
  
  

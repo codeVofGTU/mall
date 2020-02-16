@@ -25,6 +25,7 @@ import com.codev.mall.catering.service.ICateringinfoService;
 import com.codev.mall.catering.entity.Cateringinfo;
 import com.codev.mall.catering.vo.CateringinfoVO;
 import com.codev.mall.base.PageQueryBody;
+import com.codev.mall.base.ResponseBodyBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.List;
@@ -35,7 +36,7 @@ import java.util.Map;
 /**
 *  前端控制器
 * @author godV
-* @since 2020-02-15
+* @since 2020-02-16
 */
 @RestController
 public class CateringinfoController {
@@ -60,15 +61,16 @@ public class CateringinfoController {
 	}
 	
 	/**
-     * 按查询条件查询.
+     * 按查询条件查询分页.
      * 
      * @param vo QueryVO
      * @return Page<Cateringinfo>
      */
- 	@PostMapping("/Cateringinfos")
-    List<Cateringinfo> findAll(@RequestBody PageQueryBody<Cateringinfo> vo){
+ 	@PostMapping("/Cateringinfos/page")
+    ResponseBodyBean<List<Cateringinfo>> findByPage(@RequestBody PageQueryBody<Cateringinfo> vo){
     	return getService().selectPage(vo);
     };
+    
 	/**
      * 修改.
      * 
@@ -104,4 +106,14 @@ public class CateringinfoController {
    		return getService().removeById(id);
     }
  
+	/**
+     * 按查询条件查询分页.
+     * 
+     * @param vo QueryVO
+     * @return Page<Cateringinfo>
+     */
+ 	@PostMapping("/Cateringinfos")
+    List<Cateringinfo> findByPage(){
+    	return getService().list();
+    };
 }

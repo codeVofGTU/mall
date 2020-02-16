@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
  * CateringorderVO.
  * </p>
  *
- * @author godV, 2020-02-15
+ * @author godV, 2020-02-16
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

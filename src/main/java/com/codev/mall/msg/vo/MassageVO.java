@@ -1,4 +1,4 @@
-package com.codev.mall.massage.vo;
+package com.codev.mall.msg.vo;
 
 import java.io.Serializable;
 
@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
  * MassageVO.
  * </p>
  *
- * @author godV, 2020-02-15
+ * @author godV, 2020-02-16
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

@@ -3,6 +3,7 @@ package com.codev.mall.catering.service;
 import com.codev.mall.catering.entity.Cateringinfo;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.codev.mall.base.PageQueryBody;
+import com.codev.mall.base.ResponseBodyBean;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
  * </p>
  *
  * @author godV
- * @since 2020-02-15
+ * @since 2020-02-16
  */
 public interface ICateringinfoService extends IService<Cateringinfo> {
  
@@ -22,5 +23,5 @@ public interface ICateringinfoService extends IService<Cateringinfo> {
      * @param Cateringinfo
      * @return
      */
-	List<Cateringinfo> selectPage(PageQueryBody<Cateringinfo> vo);
+	ResponseBodyBean<List<Cateringinfo>> selectPage(PageQueryBody<Cateringinfo> vo);
 }

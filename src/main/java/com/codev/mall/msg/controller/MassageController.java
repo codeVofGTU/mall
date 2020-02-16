@@ -1,4 +1,4 @@
- package com.codev.mall.massage.controller;
+ package com.codev.mall.msg.controller;
  
  
 import org.springframework.stereotype.Controller;
@@ -21,10 +21,11 @@ import javax.validation.Valid;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.codev.mall.massage.service.IMassageService;
-import com.codev.mall.massage.entity.Massage;
-import com.codev.mall.massage.vo.MassageVO;
+import com.codev.mall.msg.service.IMassageService;
+import com.codev.mall.msg.entity.Massage;
+import com.codev.mall.msg.vo.MassageVO;
 import com.codev.mall.base.PageQueryBody;
+import com.codev.mall.base.ResponseBodyBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.List;
@@ -35,7 +36,7 @@ import java.util.Map;
 /**
 *  前端控制器
 * @author godV
-* @since 2020-02-15
+* @since 2020-02-16
 */
 @RestController
 public class MassageController {
@@ -60,15 +61,16 @@ public class MassageController {
 	}
 	
 	/**
-     * 按查询条件查询.
+     * 按查询条件查询分页.
      * 
      * @param vo QueryVO
      * @return Page<Massage>
      */
- 	@PostMapping("/Massages")
-    List<Massage> findAll(@RequestBody PageQueryBody<Massage> vo){
+ 	@PostMapping("/Massages/page")
+    ResponseBodyBean<List<Massage>> findByPage(@RequestBody PageQueryBody<Massage> vo){
     	return getService().selectPage(vo);
     };
+    
 	/**
      * 修改.
      * 
@@ -104,4 +106,14 @@ public class MassageController {
    		return getService().removeById(id);
     }
  
+	/**
+     * 按查询条件查询分页.
+     * 
+     * @param vo QueryVO
+     * @return Page<Massage>
+     */
+ 	@PostMapping("/Massages")
+    List<Massage> findByPage(){
+    	return getService().list();
+    };
 }

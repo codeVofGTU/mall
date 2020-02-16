@@ -1,6 +1,6 @@
-package com.codev.mall.massage.mapper;
+package com.codev.mall.msg.mapper;
  
-import com.codev.mall.massage.entity.Massage;
+import com.codev.mall.msg.entity.Massage;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  
 /**
@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author godV
- * @since 2020-02-15
+ * @since 2020-02-16
  */
 public interface MassageMapper extends BaseMapper<Massage> {
  

@@ -8,6 +8,8 @@ import java.io.Serializable;
  
 import lombok.Data;
 import lombok.experimental.Accessors;
+import lombok.Getter;
+import lombok.Setter;
  
 /**
  * <p>
@@ -15,10 +17,12 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author godV
- * @since 2020-02-15
+ * @since 2020-02-16
  */
 @Data
 @Accessors(chain = true)
+@Getter
+@Setter
 public class Cateringinfo implements Serializable {
  
 	private static final long serialVersionUID = 1L;

@@ -113,7 +113,7 @@ public class CateringinfoController {
      * @return Page<Cateringinfo>
      */
  	@PostMapping("/Cateringinfos")
-    List<Cateringinfo> findByPage(){
-    	return getService().list();
+    List<CateringinfoVO> findByPage(){
+    	return getService().selectAll();
     };
 }

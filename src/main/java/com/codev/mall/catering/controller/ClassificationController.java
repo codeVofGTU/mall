@@ -1,15 +1,7 @@
  package com.codev.mall.catering.controller;
  
- 
-import org.springframework.stereotype.Controller;
-
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,20 +10,15 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.validation.Valid;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import com.codev.mall.catering.service.IClassificationService;
 import com.codev.mall.catering.entity.Classification;
-import com.codev.mall.catering.vo.ClassificationVO;
 import com.codev.mall.base.PageQueryBody;
 import com.codev.mall.base.ResponseBodyBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.List;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+
  
 /**
 *  前端控制器
@@ -107,10 +94,10 @@ public class ClassificationController {
     }
  
 	/**
-     * 按查询条件查询分页.
+     * 查询全部.
      * 
      * @param vo QueryVO
-     * @return Page<Classification>
+     * @return List<Classification>
      */
  	@PostMapping("/Classifications")
     List<Classification> findByPage(){

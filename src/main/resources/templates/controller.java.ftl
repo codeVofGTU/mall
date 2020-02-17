@@ -119,10 +119,10 @@ public class ${table.controllerName} {
     }
  
 	/**
-     * 按查询条件查询分页.
+     * 查询全部.
      * 
      * @param vo QueryVO
-     * @return Page<${table.entityName}>
+     * @return List<${table.entityName}>
      */
  	@PostMapping("/${table.entityName}s")
     List<${table.entityName}> findByPage(){

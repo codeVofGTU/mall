@@ -1,6 +1,7 @@
 package com.codev.mall.catering.service;
 
 import com.codev.mall.catering.entity.Cateringinfo;
+import com.codev.mall.catering.vo.CateringinfoVO;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.codev.mall.base.PageQueryBody;
 import com.codev.mall.base.ResponseBodyBean;
@@ -24,4 +25,11 @@ public interface ICateringinfoService extends IService<Cateringinfo> {
      * @return
      */
 	ResponseBodyBean<List<Cateringinfo>> selectPage(PageQueryBody<Cateringinfo> vo);
+	
+	/**
+	 * 查询全部多表查询 
+	 * 
+	 * @return 
+	 */
+	List<CateringinfoVO> selectAll();
 }

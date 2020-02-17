@@ -12,8 +12,6 @@ import ${pkg};
  
 import lombok.Data;
 import lombok.experimental.Accessors;
-import lombok.Getter;
-import lombok.Setter;
 </#if>
  
 /**

@@ -21,15 +21,26 @@ import lombok.Setter;
  */
 @Data
 @Accessors(chain = true)
-@Getter
-@Setter
 public class Classification implements Serializable {
  
 	private static final long serialVersionUID = 1L;
  
 	@TableId(value="seq", type= IdType.AUTO)
     private Integer seq;     
-    private String name;     
+    private String name;
+    
+	public Integer getSeq() {
+		return seq;
+	}
+	public void setSeq(Integer seq) {
+		this.seq = seq;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}     
  
 
 }

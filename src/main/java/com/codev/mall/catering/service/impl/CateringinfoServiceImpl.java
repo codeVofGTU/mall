@@ -54,23 +54,24 @@ public class CateringinfoServiceImpl extends ServiceImpl<CateringinfoMapper, Cat
 
 	@Override
 	public List<CateringinfoVO> selectAll() {
-		List<CateringinfoVO> listVO = new ArrayList();
-		QueryWrapper<Classification> wrapper = new QueryWrapper();
-		List<Cateringinfo> infoList = this.getMapper().selectList(null);
-		for (Cateringinfo cateringinfo : infoList) {
-			Classification classification = classificationService.getOne(wrapper.eq("seq", cateringinfo.getCcseq()));
-			CateringinfoVO vo = this.cloneBean(cateringinfo,classification);
-			listVO.add(vo);
-		}
-		return listVO;
+//		List<CateringinfoVO> listVO = new ArrayList();
+//		QueryWrapper<Classification> wrapper = new QueryWrapper();
+//		List<Cateringinfo> infoList = this.getMapper().selectList(null);
+//		for (Cateringinfo cateringinfo : infoList) {
+//			Classification classification = classificationService.getOne(wrapper.eq("seq", cateringinfo.getCcseq()));
+//			CateringinfoVO vo = this.cloneBean(cateringinfo,classification);
+//			listVO.add(vo);
+//		}
+//		return listVO;
+		return this.getMapper().getCateringinfoAll();
 	}
 	
-	private CateringinfoVO cloneBean(Cateringinfo info,Classification classification) {
-		CateringinfoVO vo = new CateringinfoVO(info.getSeq(),
-				info.getCateringname(),classification,info.getNum(),
-				info.getPrice(),info.getInfo(),info.getPicturePath(),info.getBseq());
-		return vo;
-	}
+//	private CateringinfoVO cloneBean(Cateringinfo info,Classification classification) {
+////		CateringinfoVO vo = new CateringinfoVO(info.getSeq(),
+////				info.getCateringname(),classification,info.getNum(),
+////				info.getPrice(),info.getInfo(),info.getPicturePath(),info.getBseq());
+////		return vo;
+//	}
  
  
 }

@@ -1,6 +1,12 @@
 package com.codev.mall.catering.mapper;
  
 import com.codev.mall.catering.entity.Cateringinfo;
+import com.codev.mall.catering.vo.CateringinfoVO;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Select;
+
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  
 /**
@@ -13,4 +19,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface CateringinfoMapper extends BaseMapper<Cateringinfo> {
  
+	
+	@Select("SELECT cateringinfo.*,business.username,classification.name FROM cateringinfo,business,classification WHERE cateringinfo.bseq=business.seq and cateringinfo.ccseq = classification.seq")
+    List<CateringinfoVO> getCateringinfoAll();
+
 }

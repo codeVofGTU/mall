@@ -3,6 +3,7 @@ package ${package.Service};
 import ${package.Entity}.${entity};
 import ${superServiceClassPackage};
 import com.codev.mall.base.PageQueryBody;
+import com.codev.mall.base.ResponseBodyBean;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import java.util.List;
@@ -22,5 +23,5 @@ public interface ${table.serviceName} extends ${superServiceClass}<${entity}> {
      * @param ${entity}
      * @return
      */
-	List<${entity}> selectPage(PageQueryBody<${entity}> vo);
+	ResponseBodyBean<List<${entity}>> selectPage(PageQueryBody<${entity}> vo);
 }

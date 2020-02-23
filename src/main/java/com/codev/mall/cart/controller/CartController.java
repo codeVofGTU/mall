@@ -1,15 +1,7 @@
- package ${package.Controller};
+ package com.codev.mall.cart.controller;
  
  
-<#if restControllerStyle>
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-<#else>
 import org.springframework.stereotype.Controller;
-</#if>
-<#if superControllerClassPackage??>
-import ${superControllerClassPackage};
-</#if>
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.ui.Model;
@@ -29,9 +21,9 @@ import javax.validation.Valid;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ${package.Service}.${table.serviceName};
-import ${package.Entity}.${entity};
-import ${cfg.packageName}.vo.${entity}VO;
+import com.codev.mall.cart.service.ICartService;
+import com.codev.mall.cart.entity.Cart;
+import com.codev.mall.cart.vo.CartVO;
 import com.codev.mall.base.PageQueryBody;
 import com.codev.mall.base.ResponseBodyBean;
 import org.slf4j.Logger;
@@ -42,33 +34,29 @@ import java.util.HashMap;
 import java.util.Map;
  
 /**
-* ${table.comment!} 前端控制器
-* @author ${author}
-* @since ${date}
+*  前端控制器
+* @author godV
+* @since 2020-02-16
 */
 @RestController
-<#if superControllerClass??>
-public class ${table.controllerName} extends ${superControllerClass} {
-  <#else>
-public class ${table.controllerName} {
-</#if>
-	private final Logger logger = LoggerFactory.getLogger(${table.controllerName}.class);
+public class CartController {
+	private final Logger logger = LoggerFactory.getLogger(CartController.class);
  
 	@Autowired
-	public ${table.serviceName} ${entity}Service;
+	public ICartService CartService;
 	
-    protected ${table.serviceName} getService() {
-        return ${entity}Service;
+    protected ICartService getService() {
+        return CartService;
     }
  
 	/**
      * 按id查询.
      * 
      * @param id id
-     * @return ${table.entityName}
+     * @return Cart
      */
-	@GetMapping("/${table.entityName}/id/{id}")
-	public ${table.entityName} findOne(@PathVariable String id) {
+	@GetMapping("/Cart/id/{id}")
+	public Cart findOne(@PathVariable String id) {
 		return getService().getById(id);
 	}
 	
@@ -76,22 +64,22 @@ public class ${table.controllerName} {
      * 按查询条件查询分页.
      * 
      * @param vo QueryVO
-     * @return Page<${table.entityName}>
+     * @return Page<Cart>
      */
- 	@PostMapping("/${table.entityName}s/page")
-    ResponseBodyBean<List<${table.entityName}>> findByPage(@RequestBody PageQueryBody<${table.entityName}> vo){
+ 	@PostMapping("/Carts/page")
+    ResponseBodyBean<List<Cart>> findByPage(@RequestBody PageQueryBody<Cart> vo){
     	return getService().selectPage(vo);
     };
     
 	/**
      * 修改.
      * 
-     * @param vo ${table.entityName}
-     * @param ${table.entityName} ${table.entityName}
-     * @return ${table.entityName}
+     * @param vo Cart
+     * @param Cart Cart
+     * @return Cart
      */
-    @PutMapping("/${table.entityName}/id/{id}")
-    ${table.entityName} put(@PathVariable String id, @RequestBody @Valid ${table.entityName} vo){
+    @PutMapping("/Cart/id/{id}")
+    Cart put(@PathVariable String id, @RequestBody @Valid Cart vo){
     	
     	return getService().updateById(vo)? getService().getById(id):getService().getById(id);
     }
@@ -99,12 +87,12 @@ public class ${table.controllerName} {
     /**
      * 添加.
      * 
-     * @param vo ${table.entityName}
-     * @return ${table.entityName}
+     * @param vo Cart
+     * @return Cart
      */
-    @PostMapping("/${table.entityName}")
-    ${table.entityName} add(@RequestBody ${table.entityName} vo){
-    	return getService().save(vo)? vo:new ${table.entityName}();
+    @PostMapping("/Cart")
+    Cart add(@RequestBody Cart vo){
+    	return getService().save(vo)? vo:new Cart();
     }
 
     /**
@@ -113,19 +101,19 @@ public class ${table.controllerName} {
      * @param id id
      * @return String
      */
-    @DeleteMapping("/${table.entityName}/id/{id}")
+    @DeleteMapping("/Cart/id/{id}")
     boolean delete(@PathVariable String id){
    		return getService().removeById(id);
     }
  
 	/**
-     * 查询全部.
+     * 按查询条件查询分页.
      * 
      * @param vo QueryVO
-     * @return List<${table.entityName}>
+     * @return Page<Cart>
      */
- 	@PostMapping("/${table.entityName}s")
-    List<${table.entityName}> findByPage(){
+ 	@PostMapping("/Carts")
+    List<Cart> findByPage(){
     	return getService().list();
     };
 }

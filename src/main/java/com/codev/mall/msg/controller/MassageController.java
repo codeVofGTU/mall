@@ -1,15 +1,7 @@
- package ${package.Controller};
+ package com.codev.mall.msg.controller;
  
  
-<#if restControllerStyle>
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-<#else>
 import org.springframework.stereotype.Controller;
-</#if>
-<#if superControllerClassPackage??>
-import ${superControllerClassPackage};
-</#if>
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.ui.Model;
@@ -29,9 +21,9 @@ import javax.validation.Valid;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ${package.Service}.${table.serviceName};
-import ${package.Entity}.${entity};
-import ${cfg.packageName}.vo.${entity}VO;
+import com.codev.mall.msg.service.IMassageService;
+import com.codev.mall.msg.entity.Massage;
+import com.codev.mall.msg.vo.MassageVO;
 import com.codev.mall.base.PageQueryBody;
 import com.codev.mall.base.ResponseBodyBean;
 import org.slf4j.Logger;
@@ -42,33 +34,29 @@ import java.util.HashMap;
 import java.util.Map;
  
 /**
-* ${table.comment!} 前端控制器
-* @author ${author}
-* @since ${date}
+*  前端控制器
+* @author godV
+* @since 2020-02-16
 */
 @RestController
-<#if superControllerClass??>
-public class ${table.controllerName} extends ${superControllerClass} {
-  <#else>
-public class ${table.controllerName} {
-</#if>
-	private final Logger logger = LoggerFactory.getLogger(${table.controllerName}.class);
+public class MassageController {
+	private final Logger logger = LoggerFactory.getLogger(MassageController.class);
  
 	@Autowired
-	public ${table.serviceName} ${entity}Service;
+	public IMassageService MassageService;
 	
-    protected ${table.serviceName} getService() {
-        return ${entity}Service;
+    protected IMassageService getService() {
+        return MassageService;
     }
  
 	/**
      * 按id查询.
      * 
      * @param id id
-     * @return ${table.entityName}
+     * @return Massage
      */
-	@GetMapping("/${table.entityName}/id/{id}")
-	public ${table.entityName} findOne(@PathVariable String id) {
+	@GetMapping("/Massage/id/{id}")
+	public Massage findOne(@PathVariable String id) {
 		return getService().getById(id);
 	}
 	
@@ -76,22 +64,22 @@ public class ${table.controllerName} {
      * 按查询条件查询分页.
      * 
      * @param vo QueryVO
-     * @return Page<${table.entityName}>
+     * @return Page<Massage>
      */
- 	@PostMapping("/${table.entityName}s/page")
-    ResponseBodyBean<List<${table.entityName}>> findByPage(@RequestBody PageQueryBody<${table.entityName}> vo){
+ 	@PostMapping("/Massages/page")
+    ResponseBodyBean<List<Massage>> findByPage(@RequestBody PageQueryBody<Massage> vo){
     	return getService().selectPage(vo);
     };
     
 	/**
      * 修改.
      * 
-     * @param vo ${table.entityName}
-     * @param ${table.entityName} ${table.entityName}
-     * @return ${table.entityName}
+     * @param vo Massage
+     * @param Massage Massage
+     * @return Massage
      */
-    @PutMapping("/${table.entityName}/id/{id}")
-    ${table.entityName} put(@PathVariable String id, @RequestBody @Valid ${table.entityName} vo){
+    @PutMapping("/Massage/id/{id}")
+    Massage put(@PathVariable String id, @RequestBody @Valid Massage vo){
     	
     	return getService().updateById(vo)? getService().getById(id):getService().getById(id);
     }
@@ -99,12 +87,12 @@ public class ${table.controllerName} {
     /**
      * 添加.
      * 
-     * @param vo ${table.entityName}
-     * @return ${table.entityName}
+     * @param vo Massage
+     * @return Massage
      */
-    @PostMapping("/${table.entityName}")
-    ${table.entityName} add(@RequestBody ${table.entityName} vo){
-    	return getService().save(vo)? vo:new ${table.entityName}();
+    @PostMapping("/Massage")
+    Massage add(@RequestBody Massage vo){
+    	return getService().save(vo)? vo:new Massage();
     }
 
     /**
@@ -113,19 +101,19 @@ public class ${table.controllerName} {
      * @param id id
      * @return String
      */
-    @DeleteMapping("/${table.entityName}/id/{id}")
+    @DeleteMapping("/Massage/id/{id}")
     boolean delete(@PathVariable String id){
    		return getService().removeById(id);
     }
  
 	/**
-     * 查询全部.
+     * 按查询条件查询分页.
      * 
      * @param vo QueryVO
-     * @return List<${table.entityName}>
+     * @return Page<Massage>
      */
- 	@PostMapping("/${table.entityName}s")
-    List<${table.entityName}> findByPage(){
+ 	@PostMapping("/Massages")
+    List<Massage> findByPage(){
     	return getService().list();
     };
 }

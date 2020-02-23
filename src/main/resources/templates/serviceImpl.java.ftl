@@ -7,6 +7,7 @@ import ${package.Mapper}.${table.mapperName};
 import ${package.Service}.${table.serviceName};
 import ${superServiceImplClassPackage};
 import com.codev.mall.base.PageQueryBody;
+import com.codev.mall.base.ResponseBodyBean;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.springframework.stereotype.Service;
@@ -35,11 +36,11 @@ public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.m
     }
  
 	@Override
-	public List<${entity}> selectPage(PageQueryBody<${entity}> vo) {
+	public ResponseBodyBean<List<${entity}>> selectPage(PageQueryBody<${entity}> vo) {
 		Page<${entity}> page = new Page<${entity}>(vo.getPage(), vo.getSize());
 		Page<${entity}> ${table.entityName}IPage = getMapper().selectPage(page, Wrappers.<${entity}>lambdaQuery());
 		List<${entity}> records = ${table.entityName}IPage.getRecords();
-		return records;
+		return new ResponseBodyBean<List<${entity}>>(records, ${table.entityName}IPage.getTotal());
 	}
  
  

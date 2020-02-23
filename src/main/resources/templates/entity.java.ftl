@@ -25,6 +25,8 @@ import lombok.experimental.Accessors;
 <#if entityLombokModel>
 @Data
 @Accessors(chain = true)
+@Getter
+@Setter
 </#if>
 <#if table.convert>
 @TableName("${table.name}")

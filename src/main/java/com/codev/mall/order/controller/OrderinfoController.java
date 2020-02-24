@@ -112,8 +112,8 @@ public class OrderinfoController {
      * @param vo QueryVO
      * @return Page<Orderinfo>
      */
- 	@PostMapping("/Orderinfos")
-    List<Orderinfo> findByPage(){
-    	return getService().list();
+ 	@GetMapping("/Orderinfos/oseq/{oseq}")
+    List<OrderinfoVO> findByPage(@PathVariable Integer oseq){
+    	return getService().getAllOrderinfo(oseq);
     };
 }

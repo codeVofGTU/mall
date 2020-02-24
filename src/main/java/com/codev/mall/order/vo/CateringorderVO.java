@@ -25,16 +25,16 @@ public class CateringorderVO implements Serializable {
     private Integer seq;
 
     private Integer useq;
+    
+    private String username;
 
     private LocalDateTime trandate;
 
-    private Integer status;
+    private String status;
 
     private Double remittance;
 
     private String info;
-
-    private Integer bseq;
 
     private String adress;
 

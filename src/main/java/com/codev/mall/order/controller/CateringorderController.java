@@ -113,7 +113,7 @@ public class CateringorderController {
      * @return Page<Cateringorder>
      */
  	@PostMapping("/Cateringorders")
-    List<Cateringorder> findByPage(){
-    	return getService().list();
+    List<CateringorderVO> findByPage(){
+    	return getService().getCateringorderAll();
     };
 }

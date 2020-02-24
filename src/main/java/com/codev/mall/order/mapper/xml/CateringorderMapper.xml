@@ -13,13 +13,12 @@
         <result column="status" property="status" />
         <result column="remittance" property="remittance" />
         <result column="info" property="info" />
-        <result column="bseq" property="bseq" />
         <result column="adress" property="adress" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        seq, useq, trandate, status, remittance, info, bseq, adress
+        seq, useq, trandate, status, remittance, info, adress
     </sql>
 
 </mapper>

@@ -5,10 +5,12 @@ package com.codev.mall.order.service.impl;
 import com.codev.mall.order.entity.Orderinfo;
 import com.codev.mall.order.mapper.OrderinfoMapper;
 import com.codev.mall.order.service.IOrderinfoService;
+import com.codev.mall.order.vo.OrderinfoVO;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.codev.mall.base.PageQueryBody;
 import com.codev.mall.base.ResponseBodyBean;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +43,14 @@ public class OrderinfoServiceImpl extends ServiceImpl<OrderinfoMapper, Orderinfo
 		Page<Orderinfo> OrderinfoIPage = getMapper().selectPage(page, Wrappers.<Orderinfo>lambdaQuery());
 		List<Orderinfo> records = OrderinfoIPage.getRecords();
 		return new ResponseBodyBean<List<Orderinfo>>(records, OrderinfoIPage.getTotal());
+	}
+
+	@Override
+	public List<OrderinfoVO> getAllOrderinfo(Integer oseq) {
+		// TODO Auto-generated method stub
+		QueryWrapper<OrderinfoVO> queryWrapper =  new QueryWrapper();
+		queryWrapper.eq("oseq", oseq);
+		return this.getMapper().getOrderinfoAll(queryWrapper);
 	}
  
  

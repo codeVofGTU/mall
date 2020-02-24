@@ -1,6 +1,7 @@
 package com.codev.mall.order.service;
 
 import com.codev.mall.order.entity.Cateringorder;
+import com.codev.mall.order.vo.CateringorderVO;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.codev.mall.base.PageQueryBody;
 import com.codev.mall.base.ResponseBodyBean;
@@ -24,4 +25,12 @@ public interface ICateringorderService extends IService<Cateringorder> {
      * @return
      */
 	ResponseBodyBean<List<Cateringorder>> selectPage(PageQueryBody<Cateringorder> vo);
+	
+	
+	/**
+     *  分页查询
+     * @param Cateringorder
+     * @return
+     */
+	List<CateringorderVO> getCateringorderAll();
 }

@@ -48,7 +48,7 @@ public class OrderinfoServiceImpl extends ServiceImpl<OrderinfoMapper, Orderinfo
 	@Override
 	public List<OrderinfoVO> getAllOrderinfo(Integer oseq) {
 		// TODO Auto-generated method stub
-		QueryWrapper<OrderinfoVO> queryWrapper =  new QueryWrapper();
+		QueryWrapper<OrderinfoVO> queryWrapper =  new QueryWrapper<OrderinfoVO>();
 		queryWrapper.eq("oseq", oseq);
 		return this.getMapper().getOrderinfoAll(queryWrapper);
 	}

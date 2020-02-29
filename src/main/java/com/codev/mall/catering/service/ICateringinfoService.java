@@ -5,6 +5,7 @@ import com.codev.mall.catering.vo.CateringinfoVO;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.codev.mall.base.PageQueryBody;
 import com.codev.mall.base.ResponseBodyBean;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public interface ICateringinfoService extends IService<Cateringinfo> {
      * @param Cateringinfo
      * @return
      */
-	ResponseBodyBean<List<Cateringinfo>> selectPage(PageQueryBody<Cateringinfo> vo);
+	IPage<Cateringinfo> selectPage(PageQueryBody<Cateringinfo> vo);
 	
 	/**
 	 * 查询全部多表查询 

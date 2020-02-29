@@ -16,6 +16,8 @@ import com.codev.mall.base.PageQueryBody;
 import com.codev.mall.base.ResponseBodyBean;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -48,17 +50,16 @@ public class CateringinfoServiceImpl extends ServiceImpl<CateringinfoMapper, Cat
     }
  
 	@Override
-	public ResponseBodyBean<List<Cateringinfo>> selectPage(PageQueryBody<Cateringinfo> vo) {
+	public IPage<Cateringinfo> selectPage(PageQueryBody<Cateringinfo> vo) {
 		Page<Cateringinfo> page = new Page<Cateringinfo>(vo.getPage(), vo.getSize());
 		QueryWrapper<Cateringinfo> qw = new QueryWrapper<>();
-		Map<String,Object> params = new HashMap<String, Object>();
-		params=MapObjUtil.object2Map(vo.getEntity());
+		Map<String,Object> params = MapObjUtil.object2Map(vo.getEntity());
 		log.info(params.toString());
 		qw.allEq(params, false);
 		//Page<Cateringinfo> CateringinfoIPage = getMapper().selectPage(page, Wrappers.<Cateringinfo>lambdaQuery().eq(Cateringinfo::getCcseq,vo.getEntity().getCcseq()));
-		Page<Cateringinfo> CateringinfoIPage = getMapper().selectPage(page, qw);
-		List<Cateringinfo> records = CateringinfoIPage.getRecords();
-		return new ResponseBodyBean<List<Cateringinfo>>(records, CateringinfoIPage.getTotal());
+		IPage<Cateringinfo> CateringinfoIPage = getMapper().selectPage(page, qw);
+//		List<Cateringinfo> records = CateringinfoIPage.getRecords();
+		return CateringinfoIPage;
 	}
 
 	@Override

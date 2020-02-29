@@ -12,6 +12,7 @@ import ${superControllerClassPackage};
 </#if>
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -79,7 +80,7 @@ public class ${table.controllerName} {
      * @return Page<${table.entityName}>
      */
  	@PostMapping("/${table.entityName}s/page")
-    ResponseBodyBean<List<${table.entityName}>> findByPage(@RequestBody PageQueryBody<${table.entityName}> vo){
+    IPage<${table.entityName}> findByPage(@RequestBody PageQueryBody<${table.entityName}> vo){
     	return getService().selectPage(vo);
     };
     

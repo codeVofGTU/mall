@@ -137,6 +137,18 @@ public class CateringinfoController {
     };
     
     /**
+     * 按查询条件查询分页.
+     * 
+     * @param vo QueryVO
+     * @return Page<Cateringinfo>
+     */
+ 	@PostMapping("/Cateringinfo/search")
+ 	IPage<Cateringinfo> findBycateringname(@RequestBody PageQueryBody<Cateringinfo> vo){
+    	return getService().selectCatering(vo);
+    };
+    
+    
+    /**
     *
     * @param file 要上传的文件
     * @return

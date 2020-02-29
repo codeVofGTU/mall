@@ -75,13 +75,21 @@ public class CateringinfoServiceImpl extends ServiceImpl<CateringinfoMapper, Cat
 //		return listVO;
 		return this.getMapper().getCateringinfoAll();
 	}
+
+	@Override
+	public IPage<Cateringinfo> selectCatering(PageQueryBody<Cateringinfo> vo) {
+		Page<Cateringinfo> page = new Page<Cateringinfo>(vo.getPage(), vo.getSize());
+		QueryWrapper<Cateringinfo> qw = new QueryWrapper<>();
+		if (!"".equals(vo.getEntity().getCateringname())) {
+			qw.like("cateringname",vo.getEntity().getCateringname());
+		}else {
+			Map<String,Object> params = MapObjUtil.object2Map(vo.getEntity());
+			log.info(params.toString());
+			qw.allEq(params, false);
+		}
+		IPage<Cateringinfo> CateringinfoIPage = getMapper().selectPage(page, qw);
+		return CateringinfoIPage;
+	}
 	
-//	private CateringinfoVO cloneBean(Cateringinfo info,Classification classification) {
-////		CateringinfoVO vo = new CateringinfoVO(info.getSeq(),
-////				info.getCateringname(),classification,info.getNum(),
-////				info.getPrice(),info.getInfo(),info.getPicturePath(),info.getBseq());
-////		return vo;
-//	}
- 
  
 }

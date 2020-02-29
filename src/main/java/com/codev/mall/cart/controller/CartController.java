@@ -107,13 +107,13 @@ public class CartController {
     }
  
 	/**
-     * 按查询条件查询分页.
+     * 按查询条件查询.
      * 
      * @param vo QueryVO
      * @return Page<Cart>
      */
- 	@PostMapping("/Carts")
-    List<Cart> findByPage(){
-    	return getService().list();
+ 	@PostMapping("/Carts/useq/{useq}")
+    List<CartVO> findByPage(@PathVariable Integer useq){
+    	return getService().getCartByuseq(useq);
     };
 }

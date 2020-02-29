@@ -9,13 +9,13 @@
     <resultMap id="BaseResultMap" type="com.codev.mall.msg.entity.Massage">
         <id column="seq" property="seq" />
         <result column="context" property="context" />
-        <result column="ciseq" property="ciseq" />
+        <result column="oseq" property="oseq" />
         <result column="useq" property="useq" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        seq, context, ciseq, useq
+        seq, context, oseq, useq
     </sql>
 
 </mapper>

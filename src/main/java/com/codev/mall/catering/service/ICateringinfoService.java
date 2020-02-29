@@ -33,4 +33,11 @@ public interface ICateringinfoService extends IService<Cateringinfo> {
 	 * @return 
 	 */
 	List<CateringinfoVO> selectAll();
+	
+	/**
+     *  菜品查询
+     * @param Cateringinfo
+     * @return
+     */
+	IPage<Cateringinfo> selectCatering(PageQueryBody<Cateringinfo> vo);
 }

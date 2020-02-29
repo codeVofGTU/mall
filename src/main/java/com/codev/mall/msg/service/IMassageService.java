@@ -1,11 +1,12 @@
 package com.codev.mall.msg.service;
 
 import com.codev.mall.msg.entity.Massage;
+import com.codev.mall.msg.vo.MassageVO;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.codev.mall.base.PageQueryBody;
 import com.codev.mall.base.ResponseBodyBean;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import java.util.List;
 /**
  * <p>
@@ -13,7 +14,7 @@ import java.util.List;
  * </p>
  *
  * @author godV
- * @since 2020-02-16
+ * @since 2020-02-29
  */
 public interface IMassageService extends IService<Massage> {
  
@@ -21,7 +22,15 @@ public interface IMassageService extends IService<Massage> {
 	/**
      *  分页查询
      * @param Massage
-     * @return
+     * @return IPage<Massage>
      */
-	ResponseBodyBean<List<Massage>> selectPage(PageQueryBody<Massage> vo);
+	IPage<Massage> selectPage(PageQueryBody<Massage> vo);
+	
+	
+	/**
+	 * 查询所有
+	 * 
+	 * @return
+	 */
+	List<MassageVO> getMsgInfoAll();
 }

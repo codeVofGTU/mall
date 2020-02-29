@@ -25,6 +25,12 @@ public class CartVO implements Serializable {
     private Integer seq;
 
     private Integer ciseq;
+    
+    private String cateringname;
+
+    private Double price;
+
+    private String picturePath;
 
     private Double num;
 

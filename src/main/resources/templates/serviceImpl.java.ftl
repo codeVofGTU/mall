@@ -40,7 +40,7 @@ public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.m
 	public IPage<${entity}> selectPage(PageQueryBody<${entity}> vo) {
 		Page<${entity}> page = new Page<${entity}>(vo.getPage(), vo.getSize());
 		IPage<${entity}> ${table.entityName}IPage = getMapper().selectPage(page, Wrappers.<${entity}>lambdaQuery());
-		return IPage<${entity}> ${table.entityName}IPage;
+		return ${table.entityName}IPage;
 	}
  
  

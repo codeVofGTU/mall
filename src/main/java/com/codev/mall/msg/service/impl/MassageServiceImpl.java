@@ -5,10 +5,14 @@ package com.codev.mall.msg.service.impl;
 import com.codev.mall.msg.entity.Massage;
 import com.codev.mall.msg.mapper.MassageMapper;
 import com.codev.mall.msg.service.IMassageService;
+import com.codev.mall.msg.vo.MassageVO;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.codev.mall.base.PageQueryBody;
 import com.codev.mall.base.ResponseBodyBean;
+import com.codev.mall.catering.entity.Cateringinfo;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +25,7 @@ import java.util.List;
  * </p>
  *
  * @author godV
- * @since 2020-02-16
+ * @since 2020-02-29
  */
 @Service
 @Transactional
@@ -36,11 +40,18 @@ public class MassageServiceImpl extends ServiceImpl<MassageMapper, Massage> impl
     }
  
 	@Override
-	public ResponseBodyBean<List<Massage>> selectPage(PageQueryBody<Massage> vo) {
-		Page<Massage> page = new Page<Massage>(vo.getPage(), vo.getSize());
-		Page<Massage> MassageIPage = getMapper().selectPage(page, Wrappers.<Massage>lambdaQuery());
-		List<Massage> records = MassageIPage.getRecords();
-		return new ResponseBodyBean<List<Massage>>(records, MassageIPage.getTotal());
+	public IPage<MassageVO> selectPage(PageQueryBody<Massage> vo) {
+		Page<MassageVO> page = new Page<MassageVO>(vo.getPage(), vo.getSize());
+		QueryWrapper<MassageVO> qw = new QueryWrapper<>();
+		qw.orderByDesc("seq");
+		IPage<MassageVO> MassageIPage = getMapper().getMsgInfoByPage(page,qw);
+		return MassageIPage;
+	}
+
+	@Override
+	public List<MassageVO> getMsgInfoAll() {
+		// TODO Auto-generated method stub
+		return this.getMapper().getMsgInfoAll();
 	}
  
  

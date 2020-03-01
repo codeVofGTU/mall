@@ -1,6 +1,7 @@
 package com.codev.mall.order.service;
 
 import com.codev.mall.order.entity.Orderinfo;
+import com.codev.mall.order.vo.OrderinfoVO;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.codev.mall.base.PageQueryBody;
 import com.codev.mall.base.ResponseBodyBean;
@@ -24,4 +25,13 @@ public interface IOrderinfoService extends IService<Orderinfo> {
      * @return
      */
 	ResponseBodyBean<List<Orderinfo>> selectPage(PageQueryBody<Orderinfo> vo);
+	
+	
+	/**
+     *  查询全部
+     * @param Orderinfo
+     * @return
+     */
+	List<OrderinfoVO> getAllOrderinfo(Integer oseq);
+	
 }

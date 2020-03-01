@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
  * MassageVO.
  * </p>
  *
- * @author godV, 2020-02-16
+ * @author godV, 2020-02-29
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -26,9 +26,11 @@ public class MassageVO implements Serializable {
 
     private String context;
 
-    private Integer ciseq;
+    private Integer oseq;
 
     private Integer useq;
+    
+    private String username;
 
 
 }

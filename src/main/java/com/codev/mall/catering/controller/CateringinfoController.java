@@ -3,6 +3,7 @@
  
 import org.springframework.stereotype.Controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -85,7 +86,7 @@ public class CateringinfoController {
      * @return Page<Cateringinfo>
      */
  	@PostMapping("/Cateringinfos/page")
-    ResponseBodyBean<List<Cateringinfo>> findByPage(@RequestBody PageQueryBody<Cateringinfo> vo){
+ 	IPage<Cateringinfo> findByPage(@RequestBody PageQueryBody<Cateringinfo> vo){
     	return getService().selectPage(vo);
     };
     
@@ -134,6 +135,18 @@ public class CateringinfoController {
     List<CateringinfoVO> findByPage(){
     	return getService().selectAll();
     };
+    
+    /**
+     * 按查询条件查询分页.
+     * 
+     * @param vo QueryVO
+     * @return Page<Cateringinfo>
+     */
+ 	@PostMapping("/Cateringinfo/search")
+ 	IPage<Cateringinfo> findBycateringname(@RequestBody PageQueryBody<Cateringinfo> vo){
+    	return getService().selectCatering(vo);
+    };
+    
     
     /**
     *

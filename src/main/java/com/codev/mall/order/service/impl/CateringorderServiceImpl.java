@@ -5,6 +5,7 @@ package com.codev.mall.order.service.impl;
 import com.codev.mall.order.entity.Cateringorder;
 import com.codev.mall.order.mapper.CateringorderMapper;
 import com.codev.mall.order.service.ICateringorderService;
+import com.codev.mall.order.vo.CateringorderVO;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.codev.mall.base.PageQueryBody;
 import com.codev.mall.base.ResponseBodyBean;
@@ -41,6 +42,12 @@ public class CateringorderServiceImpl extends ServiceImpl<CateringorderMapper, C
 		Page<Cateringorder> CateringorderIPage = getMapper().selectPage(page, Wrappers.<Cateringorder>lambdaQuery());
 		List<Cateringorder> records = CateringorderIPage.getRecords();
 		return new ResponseBodyBean<List<Cateringorder>>(records, CateringorderIPage.getTotal());
+	}
+
+	@Override
+	public List<CateringorderVO> getCateringorderAll() {
+		// TODO Auto-generated method stub
+		return this.getMapper().getCateringorderAll();
 	}
  
  

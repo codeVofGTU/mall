@@ -34,10 +34,9 @@ public class Cateringorder implements Serializable {
     private Integer seq;     
     private Integer useq;     
     private LocalDateTime trandate;     
-    private Integer status;     
+    private String status;     
     private Double remittance;     
-    private String info;     
-    private Integer bseq;     
+    private String info;         
     private String adress;     
  
 

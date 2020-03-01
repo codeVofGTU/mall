@@ -4,6 +4,7 @@
 import org.springframework.stereotype.Controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,7 +37,7 @@ import java.util.Map;
 /**
 *  前端控制器
 * @author godV
-* @since 2020-02-16
+* @since 2020-02-29
 */
 @RestController
 public class MassageController {
@@ -67,7 +68,7 @@ public class MassageController {
      * @return Page<Massage>
      */
  	@PostMapping("/Massages/page")
-    ResponseBodyBean<List<Massage>> findByPage(@RequestBody PageQueryBody<Massage> vo){
+    IPage<MassageVO> findByPage(@RequestBody PageQueryBody<Massage> vo){
     	return getService().selectPage(vo);
     };
     
@@ -107,13 +108,13 @@ public class MassageController {
     }
  
 	/**
-     * 按查询条件查询分页.
+     * 查询全部.
      * 
      * @param vo QueryVO
-     * @return Page<Massage>
+     * @return List<Massage>
      */
  	@PostMapping("/Massages")
-    List<Massage> findByPage(){
-    	return getService().list();
+    List<MassageVO> findByPage(){
+    	return getService().getMsgInfoAll();
     };
 }

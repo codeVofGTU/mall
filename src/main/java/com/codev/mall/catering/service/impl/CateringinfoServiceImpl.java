@@ -3,24 +3,28 @@ package com.codev.mall.catering.service.impl;
 
 
 import com.codev.mall.catering.entity.Cateringinfo;
-import com.codev.mall.catering.entity.Classification;
 import com.codev.mall.catering.mapper.CateringinfoMapper;
-import com.codev.mall.catering.mapper.ClassificationMapper;
 import com.codev.mall.catering.service.ICateringinfoService;
 import com.codev.mall.catering.service.IClassificationService;
 import com.codev.mall.catering.vo.CateringinfoVO;
+import com.codev.mall.util.MapObjUtil;
+
+import lombok.extern.slf4j.Slf4j;
+
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.codev.mall.base.PageQueryBody;
 import com.codev.mall.base.ResponseBodyBean;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 /**
  * <p>
  * $!{table.comment} 服务实现类
@@ -31,6 +35,7 @@ import java.util.List;
  */
 @Service
 @Transactional
+@Slf4j
 public class CateringinfoServiceImpl extends ServiceImpl<CateringinfoMapper, Cateringinfo> implements ICateringinfoService {
  
  
@@ -45,11 +50,16 @@ public class CateringinfoServiceImpl extends ServiceImpl<CateringinfoMapper, Cat
     }
  
 	@Override
-	public ResponseBodyBean<List<Cateringinfo>> selectPage(PageQueryBody<Cateringinfo> vo) {
+	public IPage<Cateringinfo> selectPage(PageQueryBody<Cateringinfo> vo) {
 		Page<Cateringinfo> page = new Page<Cateringinfo>(vo.getPage(), vo.getSize());
-		Page<Cateringinfo> CateringinfoIPage = getMapper().selectPage(page, Wrappers.<Cateringinfo>lambdaQuery());
-		List<Cateringinfo> records = CateringinfoIPage.getRecords();
-		return new ResponseBodyBean<List<Cateringinfo>>(records, CateringinfoIPage.getTotal());
+		QueryWrapper<Cateringinfo> qw = new QueryWrapper<>();
+		Map<String,Object> params = MapObjUtil.object2Map(vo.getEntity());
+		log.info(params.toString());
+		qw.allEq(params, false);
+		//Page<Cateringinfo> CateringinfoIPage = getMapper().selectPage(page, Wrappers.<Cateringinfo>lambdaQuery().eq(Cateringinfo::getCcseq,vo.getEntity().getCcseq()));
+		IPage<Cateringinfo> CateringinfoIPage = getMapper().selectPage(page, qw);
+//		List<Cateringinfo> records = CateringinfoIPage.getRecords();
+		return CateringinfoIPage;
 	}
 
 	@Override
@@ -65,13 +75,21 @@ public class CateringinfoServiceImpl extends ServiceImpl<CateringinfoMapper, Cat
 //		return listVO;
 		return this.getMapper().getCateringinfoAll();
 	}
+
+	@Override
+	public IPage<Cateringinfo> selectCatering(PageQueryBody<Cateringinfo> vo) {
+		Page<Cateringinfo> page = new Page<Cateringinfo>(vo.getPage(), vo.getSize());
+		QueryWrapper<Cateringinfo> qw = new QueryWrapper<>();
+		if (!"".equals(vo.getEntity().getCateringname())) {
+			qw.like("cateringname",vo.getEntity().getCateringname());
+		}else {
+			Map<String,Object> params = MapObjUtil.object2Map(vo.getEntity());
+			log.info(params.toString());
+			qw.allEq(params, false);
+		}
+		IPage<Cateringinfo> CateringinfoIPage = getMapper().selectPage(page, qw);
+		return CateringinfoIPage;
+	}
 	
-//	private CateringinfoVO cloneBean(Cateringinfo info,Classification classification) {
-////		CateringinfoVO vo = new CateringinfoVO(info.getSeq(),
-////				info.getCateringname(),classification,info.getNum(),
-////				info.getPrice(),info.getInfo(),info.getPicturePath(),info.getBseq());
-////		return vo;
-//	}
- 
  
 }

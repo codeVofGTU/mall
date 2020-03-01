@@ -68,7 +68,7 @@ public class MassageController {
      * @return Page<Massage>
      */
  	@PostMapping("/Massages/page")
-    IPage<Massage> findByPage(@RequestBody PageQueryBody<Massage> vo){
+    IPage<MassageVO> findByPage(@RequestBody PageQueryBody<Massage> vo){
     	return getService().selectPage(vo);
     };
     

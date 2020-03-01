@@ -7,6 +7,7 @@ import com.codev.mall.cart.mapper.CartMapper;
 import com.codev.mall.cart.service.ICartService;
 import com.codev.mall.cart.vo.CartVO;
 import com.codev.mall.order.vo.OrderinfoVO;
+import com.codev.mall.util.MapObjUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.codev.mall.base.PageQueryBody;
 import com.codev.mall.base.ResponseBodyBean;
@@ -18,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 /**
  * <p>
  * $!{table.comment} 服务实现类
@@ -49,10 +51,30 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements IC
 	@Override
 	public List<CartVO> getCartByuseq(Integer useq) {
 		// TODO Auto-generated method stub
-		QueryWrapper<OrderinfoVO> queryWrapper =  new QueryWrapper<OrderinfoVO>();
+		QueryWrapper<CartVO> queryWrapper =  new QueryWrapper<CartVO>();
 		queryWrapper.eq("useq", useq);
 		return this.getMapper().getCartByUseq(queryWrapper);
 	}
+
+	@Override
+	public boolean insertCart(Cart vo) {
+		// TODO Auto-generated method stub
+		QueryWrapper<Cart> queryWrapper =  new QueryWrapper<Cart>();
+		queryWrapper.eq("useq", vo.getUseq());
+		queryWrapper.eq("ciseq",vo.getCiseq());
+		Cart cart = this.getOne(queryWrapper);
+		if (cart.getSeq()!=null) {
+			double d = cart.getNum();
+			d++;
+			cart.setNum(d);
+			this.getMapper().updateById(cart);
+		}else {
+			this.getMapper().insert(vo);
+		}
+		return false;
+	}
+	
+	
  
  
 }

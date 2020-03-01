@@ -91,8 +91,8 @@ public class CartController {
      * @return Cart
      */
     @PostMapping("/Cart")
-    Cart add(@RequestBody Cart vo){
-    	return getService().save(vo)? vo:new Cart();
+    boolean add(@RequestBody Cart vo){
+    	return getService().insertCart(vo);
     }
 
     /**

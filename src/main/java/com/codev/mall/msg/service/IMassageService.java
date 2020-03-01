@@ -24,7 +24,7 @@ public interface IMassageService extends IService<Massage> {
      * @param Massage
      * @return IPage<Massage>
      */
-	IPage<Massage> selectPage(PageQueryBody<Massage> vo);
+	IPage<MassageVO> selectPage(PageQueryBody<Massage> vo);
 	
 	
 	/**

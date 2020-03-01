@@ -26,6 +26,6 @@ public interface CartMapper extends BaseMapper<Cart> {
 	@Select("SELECT cart.*,cateringinfo.* FROM cart left join cateringinfo "
 			+ " on cart.ciseq=cateringinfo.seq"
 			+ " ${ew.customSqlSegment}")
-    List<CartVO> getCartByUseq(@Param(Constants.WRAPPER) Wrapper<OrderinfoVO> queryWrapper);
+    List<CartVO> getCartByUseq(@Param(Constants.WRAPPER) Wrapper<CartVO> queryWrapper);
  
 }

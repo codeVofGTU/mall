@@ -32,4 +32,12 @@ public interface ICartService extends IService<Cart> {
      * @return
      */
 	List<CartVO> getCartByuseq(Integer useq);
+	
+	
+	/**
+	 * 添加商品至购物车
+	 * @param Cart
+	 * @return  
+	 */
+	boolean insertCart(Cart vo);
 }
